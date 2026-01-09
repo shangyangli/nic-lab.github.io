@@ -80,7 +80,7 @@
         main { margin-left: 300px; padding: 60px 80px; width: calc(100% - 300px); animation: fadeInUp 0.8s ease-out; }
         
         .hero { margin-bottom: 60px; }
-        .hero h1 { font-size: 2.2em; margin: 0; color: var(--primary-color); }
+        .hero h1 { font-size: 2.2em; margin: 0; color: var(--primary-color); line-height: 1.2; }
         .slogan { font-size: 1.1em; color: var(--accent-color); margin-top: 10px; font-weight: 400; }
 
         section { margin-bottom: 50px; }
@@ -92,36 +92,44 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.02); margin-bottom: 20px; 
             transition: 0.3s; 
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
         
-        /* News 滚动条样式 */
+        /* News 滚动条 */
         .news-container {
-            max-height: 200px; /* 固定高度 */
-            overflow-y: auto; /* 超出显示滚动条 */
+            max-height: 200px;
+            overflow-y: auto;
             padding-right: 10px;
         }
-        /* 自定义滚动条外观 */
-        .news-container::-webkit-scrollbar { width: 5px; }
-        .news-container::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        .news-container::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-        .news-container::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+        .news-container::-webkit-scrollbar { width: 4px; }
+        .news-container::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
 
-        .news-item { margin-bottom: 15px; font-size: 0.95em; border-left: 2px solid #eee; padding-left: 15px; }
+        .news-item { margin-bottom: 12px; font-size: 0.95em; border-left: 2px solid #eee; padding-left: 15px; }
         .news-date { color: var(--news-date); font-weight: bold; margin-right: 10px; font-size: 0.85em; }
 
-        /* Research 方向样式 */
-        .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .res-card h4 { margin-top: 0; color: var(--accent-color); margin-bottom: 10px; }
-        .res-card p { font-size: 0.9em; line-height: 1.6; color: var(--text-sub); }
+        /* Research Grid */
+        .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .res-card h4 { margin-top: 0; color: var(--accent-color); margin-bottom: 8px; }
+        .res-card p { font-size: 0.85em; line-height: 1.5; color: var(--text-sub); margin: 0; }
 
-        .pub-title { font-weight: 600; color: var(--primary-color); display: block; }
-        .pub-venue { font-size: 0.9em; color: var(--accent-color); font-weight: 600; }
+        /* Publication List 紧凑样式 */
+        .pub-list-container { counter-reset: pub-counter; }
+        .pub-year-title { font-size: 1.3em; color: var(--primary-color); border-bottom: 1px solid #eee; padding-bottom: 5px; margin: 25px 0 15px 0; }
+        .pub-list { list-style: none; padding: 0; }
+        .pub-list li { margin-bottom: 15px; padding-left: 30px; position: relative; font-size: 0.95em; }
+        .pub-list li::before {
+            content: "[" counter(pub-counter) "]";
+            counter-increment: pub-counter;
+            position: absolute; left: 0; color: var(--accent-color); font-weight: bold;
+        }
+        .pub-title { font-weight: 600; color: var(--text-main); }
+        .pub-authors { color: var(--text-sub); }
+        .pub-venue { font-style: italic; color: var(--accent-color); }
+        .pub-note { font-size: 0.85em; color: #e67e22; font-weight: bold; }
 
         @media (max-width: 1000px) {
             body { flex-direction: column; }
-            aside { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #eee; }
+            aside { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #eee; padding: 20px; }
             main { margin-left: 0; width: 100%; padding: 40px 20px; }
-            .research-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -134,7 +142,7 @@
         <h3>Shangyang Li (李尚阳)</h3>
         <div class="bi-lingual-title">
             Tenure-Track Assistant Professor <br>
-            预聘助理教授 
+            预聘助理教授
         </div>
 
         <div class="social-links">
@@ -159,7 +167,7 @@
 
     <main>
         <section id="about" class="hero">
-            <h1>Neural Intelligence & Computation Lab (NIC Lab, 神经智能与计算实验室)</h1>
+            <h1>Neural Intelligence & Computation Lab (NIC Lab)</h1>
             <div class="slogan">Compute Brains. Design Intelligence. <br> 计算大脑，设计智能。</div>
             
             <div style="margin-top: 30px; line-height: 1.8; color: var(--text-sub); font-size: 0.95em;">
@@ -168,7 +176,6 @@
                     <strong>NIC Lab</strong> 致力于探索大脑计算机理，构建具备应用价值的智能系统。我们融合<strong>机制驱动的生物物理建模</strong>与<strong>数据驱动的机器学习方法</strong>，协同推动脑科学与人工智能的发展。
                 </p>
             </div>
-
         </section>
 
         <section id="news">
@@ -179,7 +186,7 @@
                     <div class="news-item"><span class="news-date">2025.12</span> Prof. Li was invited to give a talk at the Brain-inspired Computing Forum.</div>
                     <div class="news-item"><span class="news-date">2025.11</span> Welcome new Ph.D. students joining NIC Lab!</div>
                     <div class="news-item"><span class="news-date">2025.10</span> Congratulations to NIC Lab for winning the Best Poster Award!</div>
-                    </div>
+                </div>
             </div>
         </section>
 
@@ -187,16 +194,16 @@
             <h2>Research <span>研究方向</span></h2>
             <div class="research-grid">
                 <div class="card res-card" style="padding: 15px;">
-                    <h4 style="font-size: 1em;">Mechanism-Driven Modeling <br> 机制驱动建模</h4>
-                    <p style="font-size: 0.85em;">Biophysical & circuit-level modeling of neural dynamics. <br> 从生物物理与环路层面解析神经动力学。</p>
+                    <h4>Mechanism-Driven <br> 机制驱动建模</h4>
+                    <p>Biophysical & circuit-level modeling of neural dynamics. <br> 从生物物理与环路层面解析神经动力学。</p>
                 </div>
                 <div class="card res-card" style="padding: 15px;">
-                    <h4 style="font-size: 1em;">Neuro-Medical AI <br> 神经医学人工智能</h4>
-                    <p style="font-size: 0.85em;">Foundation models and training methods for brain disorders. <br> 面向脑疾病的多模态基础模型与训练方法。</p>
+                    <h4>Neuro-Medical AI <br> 神经医学人工智能</h4>
+                    <p>Foundation models and training methods for brain disorders. <br> 面向脑疾病的多模态基础模型与训练方法。</p>
                 </div>
                 <div class="card res-card" style="padding: 15px;">
-                    <h4 style="font-size: 1em;">Clinical Impact <br> 真实世界应用与转化</h4>
-                    <p style="font-size: 0.85em;">Rigorous evaluation in real-world scenarios. <br> 在真实环境中验证并推动研究成果落地。</p>
+                    <h4>Clinical Impact <br> 真实世界应用与转化</h4>
+                    <p>Rigorous evaluation in real-world scenarios. <br> 在真实环境中验证并推动研究成果落地。</p>
                 </div>
             </div>
         </section>
@@ -204,147 +211,82 @@
         <section id="team">
             <h2>Team <span>团队成员</span></h2>
             <div class="card">
-                <strong>Prof. Shangyang Li (李尚阳)</strong> — Director
+                <strong>Prof. Shangyang Li (李尚阳)</strong> — Director / PI
             </div>
-            <p style="color: var(--text-sub); font-size: 0.9em;">We are actively looking for motivated Ph.D. and Master students. <br> 课题组常年招收实习生、推免/报考硕士、博士研究生、博士后，欢迎联系！</p>
-        </section>
-
-        <section id="publications">
-            <h2>Selected Work <span>部分论文</span></h2>    
-            <div class="card">
-                <span class="pub-title">Towards Efficient Brain-inspired Computing Architectures</span>
-                <span class="pub-authors">S. Li, et al.</span> <br>
-                <span class="pub-venue">Nature Communications, 2026</span>
-            </div>
-        </section>
-
-
-        <section id="publications">
-            <h2>Selected Publications <span>部分论文</span></h2>
-        
-            <div class="card">
-                <h3>2026</h3>
-        
-                <p class="pub-item">
-                    <span class="pub-title">
-                        MedGR²: Breaking the Data Barrier for Medical Reasoning via Generative Reward Learning
-                    </span><br>
-                    <span class="pub-authors">
-                        W. Zhi, J. Guo, S. Li*
-                    </span><br>
-                    <span class="pub-venue">
-                        AAAI Conference on Artificial Intelligence (AAAI), 2026
-                        <span class="pub-note">(CCF-A)</span>
-                    </span>
-                </p>
-        
-                <p class="pub-item">
-                    <span class="pub-title">
-                        Beyond Classification Accuracy: Neural-MedBench and the Need for Deeper Reasoning Benchmarks
-                    </span><br>
-                    <span class="pub-authors">
-                        M. Jing, et al., S. Li*
-                    </span><br>
-                    <span class="pub-venue">
-                        arXiv:2509.22258
-                    </span>
-                </p>
-            </div>
-        
-            <div class="card">
-                <h3>2025</h3>
-        
-                <p class="pub-item">
-                    <span class="pub-title">
-                        Subgraph Federated Learning with Information Bottleneck Constrained Generative Learning
-                    </span><br>
-                    <span class="pub-authors">
-                        S. Li, J. Guo
-                    </span><br>
-                    <span class="pub-venue">
-                        ACM Transactions on Knowledge Discovery from Data (TKDD), 2025
-                    </span>
-                </p>
-        
-                <p class="pub-item">
-                    <span class="pub-title">
-                        Harnessing Pre-trained Language Models for EEG-based Epilepsy Detection
-                    </span><br>
-                    <span class="pub-authors">
-                        T. Lu<sup>#</sup>, S. Li<sup>#*</sup>
-                    </span><br>
-                    <span class="pub-venue">
-                        IEEE International Conference on Multimedia and Expo (ICME), 2025
-                    </span>
-                </p>
-        
-                <p class="pub-item">
-                    <span class="pub-title">
-                        Empowering Cross-Patient Adaptive-Length Epilepsy Diagnosis with ECNorm: A Channel-wise Approach
-                    </span><br>
-                    <span class="pub-authors">
-                        K. Wang, T. Lu, S. Li*
-                    </span><br>
-                    <span class="pub-venue">
-                        Proceedings of the Cognitive Science Society (CogSci), 2025
-                    </span>
-                </p>
-            </div>
-        
-            <div class="card">
-                <h3>2024</h3>
-        
-                <p class="pub-item">
-                    <span class="pub-title">
-                        Spindle Oscillation Emerges at the Critical State of the Electrically Coupled Network in Thalamic Reticular Nucleus
-                    </span><br>
-                    <span class="pub-authors">
-                        S. Li, C. Wang, S. Wu
-                    </span><br>
-                    <span class="pub-venue">
-                        Cell Reports, 2024
-                        <span class="pub-note">(JCR Q1, Cell Press Journal)</span>
-                    </span>
-                </p>
-        
-                <p class="pub-item">
-                    <span class="pub-title">
-                        BrainPy: a Flexible, Integrative, Efficient, and Extensible Framework for General-Purpose Brain Dynamics Programming
-                    </span><br>
-                    <span class="pub-authors">
-                        C. Wang, T. Zhang, X. Chen, S. He, S. Li, S. Wu
-                    </span><br>
-                    <span class="pub-venue">
-                        eLife, 2024
-                    </span>
-                </p>
-        
-                <p class="pub-item">
-                    <span class="pub-title">
-                        BrainPy: a Differentiable Brain Simulator Bridging Brain Simulation and Brain-Inspired Computing
-                    </span><br>
-                    <span class="pub-authors">
-                        C. Wang, T. Zhang, H. Gu, S. He, S. Li, S. Wu
-                    </span><br>
-                    <span class="pub-venue">
-                        International Conference on Learning Representations (ICLR), 2024
-                    </span>
-                </p>
-            </div>
-        
-            <p class="pub-links">
-                See full publications at 
-                <a href="https://scholar.google.com/citations?user=g77hKJcAAAAJ&hl=en" target="_blank">Google Scholar</a>, 
-                <a href="https://dblp.org/pid/274/8227.html" target="_blank">DBLP</a>.
+            <p style="color: var(--text-sub); font-size: 0.9em;">
+                We are actively looking for motivated Ph.D. and Master students. <br>
+                课题组常年招收实习生、推免/报考硕士、博士研究生、博士后，欢迎联系！
             </p>
         </section>
 
-        
+        <section id="publications">
+            <h2>Selected Publications <span>部分论文</span></h2>
+            
+            <div class="pub-list-container">
+                <h3 class="pub-year-title">2026</h3>
+                <ul class="pub-list">
+                    <li>
+                        <span class="pub-title">MedGR²: Breaking the Data Barrier for Medical Reasoning via Generative Reward Learning</span><br>
+                        <span class="pub-authors">W. Zhi, J. Guo, <strong>S. Li*</strong></span><br>
+                        <span class="pub-venue">AAAI Conference on Artificial Intelligence (AAAI)</span>, 2026 <span class="pub-note">(CCF-A)</span>
+                    </li>
+                    <li>
+                        <span class="pub-title">Beyond Classification Accuracy: Neural-MedBench and the Need for Deeper Reasoning Benchmarks</span><br>
+                        <span class="pub-authors">M. Jing, et al., <strong>S. Li*</strong></span><br>
+                        <span class="pub-venue">arXiv:2509.22258</span>
+                    </li>
+                </ul>
+
+                <h3 class="pub-year-title">2025</h3>
+                <ul class="pub-list">
+                    <li>
+                        <span class="pub-title">Subgraph Federated Learning with Information Bottleneck Constrained Generative Learning</span><br>
+                        <span class="pub-authors"><strong>S. Li</strong>, J. Guo</span><br>
+                        <span class="pub-venue">ACM Transactions on Knowledge Discovery from Data (TKDD)</span>, 2025
+                    </li>
+                    <li>
+                        <span class="pub-title">Harnessing Pre-trained Language Models for EEG-based Epilepsy Detection</span><br>
+                        <span class="pub-authors">T. Lu<sup>#</sup>, <strong>S. Li<sup>#*</sup></strong></span><br>
+                        <span class="pub-venue">IEEE International Conference on Multimedia and Expo (ICME)</span>, 2025
+                    </li>
+                    <li>
+                        <span class="pub-title">Empowering Cross-Patient Adaptive-Length Epilepsy Diagnosis with ECNorm: A Channel-wise Approach</span><br>
+                        <span class="pub-authors">K. Wang, T. Lu, <strong>S. Li*</strong></span><br>
+                        <span class="pub-venue">Proceedings of the Cognitive Science Society (CogSci)</span>, 2025
+                    </li>
+                </ul>
+
+                <h3 class="pub-year-title">2024</h3>
+                <ul class="pub-list">
+                    <li>
+                        <span class="pub-title">Spindle Oscillation Emerges at the Critical State of the Electrically Coupled Network in Thalamic Reticular Nucleus</span><br>
+                        <span class="pub-authors"><strong>S. Li</strong>, C. Wang, S. Wu</span><br>
+                        <span class="pub-venue">Cell Reports</span>, 2024 <span class="pub-note">(JCR Q1, Cell Press)</span>
+                    </li>
+                    <li>
+                        <span class="pub-title">BrainPy: a Flexible, Integrative, Efficient, and Extensible Framework for General-Purpose Brain Dynamics Programming</span><br>
+                        <span class="pub-authors">C. Wang, et al., <strong>S. Li</strong>, S. Wu</span><br>
+                        <span class="pub-venue">eLife</span>, 2024
+                    </li>
+                    <li>
+                        <span class="pub-title">BrainPy: a Differentiable Brain Simulator Bridging Brain Simulation and Brain-Inspired Computing</span><br>
+                        <span class="pub-authors">C. Wang, et al., <strong>S. Li</strong>, S. Wu</span><br>
+                        <span class="pub-venue">International Conference on Learning Representations (ICLR)</span>, 2024
+                    </li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 0.9em;">
+                See full publications at 
+                <a href="https://scholar.google.com/citations?user=g77hKJcAAAAJ&hl=en" target="_blank" style="color:var(--accent-color)">Google Scholar</a>, 
+                <a href="https://dblp.org/pid/274/8227.html" target="_blank" style="color:var(--accent-color)">DBLP</a>.
+            </p>
+        </section>
 
         <section id="contact">
             <h2>Contact <span>联系方式</span></h2>
             <div class="card">
-                <p>📍 Address: Beijing University of Posts and Telecommunications, Beijing, China</p>
+                <p>📍 Address: Beijing University of Posts and Telecommunications (北京邮电大学), Beijing, China</p>
                 <p>📧 Email: <a href="mailto:nic_lab@163.com" style="color: var(--accent-color);">nic_lab@163.com</a></p>
             </div>
         </section>
