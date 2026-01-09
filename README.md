@@ -1,2 +1,2 @@
-# nic-lab.github.io
+# NICLab
 Neural Intelligence &amp; Computation Lab
