@@ -48,9 +48,16 @@
             background-color: #eee; /* 图片未加载时的占位色 */
         }
 
+        
         .lab-logo {
-            width: 80px;
-            margin-bottom: 15px;
+            width: 150px; /* 这里从 80px 放大到了 120px */
+            height: auto;
+            margin-bottom: 20px;
+            transition: transform 0.3s; /* 增加一个微小的鼠标悬停动效 */
+        }
+        
+        .lab-logo:hover {
+            transform: scale(1.05); /* 鼠标指上去会轻微放大 */
         }
 
         nav { margin-top: 30px; width: 100%; }
@@ -114,9 +121,12 @@
 </head>
 <body>
 
+
     <aside>
         <img src="images/logo.png" alt="NIC Lab Logo" class="lab-logo">
+        
         <img src="images/me.png" alt="Shangyang Li" class="profile-img">
+        
         <h3>Shangyang Li</h3>
         <p style="color: #636e72; font-size: 0.9em;">Assistant Professor / PI<br>NIC Lab Director</p>
         
